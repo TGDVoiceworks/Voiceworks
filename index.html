@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TGD Voiceworks | Voice Over Artist</title>
+	<meta name="description" content="TGD Voiceworks - Professional voice over artist for commercial, narration, character, and branded audio storytelling.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--bg-cream: #f9f4ea;
+			--ink: #10242c;
+			--teal: #0d5c63;
+			--teal-soft: #2a9d8f;
+			--orange: #f4a261;
+			--sand: #e9c46a;
+			--card: #fffdf8;
+			--shadow: 0 16px 40px rgba(16, 36, 44, 0.12);
+			--radius-lg: 22px;
+			--radius-md: 14px;
+			--radius-sm: 10px;
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			font-family: "Manrope", sans-serif;
+			color: var(--ink);
+			background:
+				radial-gradient(circle at 8% 8%, rgba(233, 196, 106, 0.35), transparent 35%),
+				radial-gradient(circle at 92% 18%, rgba(42, 157, 143, 0.25), transparent 32%),
+				linear-gradient(160deg, #fffdf8 0%, var(--bg-cream) 100%);
+			min-height: 100vh;
+			line-height: 1.5;
+			overflow-x: hidden;
+		}
+
+		.grain {
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			opacity: 0.08;
+			z-index: -1;
+			background-image: radial-gradient(#10242c 0.45px, transparent 0.45px);
+			background-size: 7px 7px;
+		}
+
+		.container {
+			width: min(1120px, 92vw);
+			margin: 0 auto;
+		}
+
+		header {
+			position: sticky;
+			top: 0;
+			z-index: 30;
+			backdrop-filter: blur(8px);
+			background: rgba(249, 244, 234, 0.8);
+			border-bottom: 1px solid rgba(13, 92, 99, 0.15);
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 14px 0;
+		}
+
+		.logo {
+			font-family: "Bebas Neue", sans-serif;
+			letter-spacing: 1px;
+			font-size: 1.9rem;
+			color: var(--teal);
+			text-decoration: none;
+		}
+
+		.links {
+			display: flex;
+			gap: 22px;
+			list-style: none;
+			font-weight: 700;
+			font-size: 0.95rem;
+		}
+
+		.links a {
+			color: var(--ink);
+			text-decoration: none;
+			transition: color 0.2s ease;
+		}
+
+		.links a:hover {
+			color: var(--teal);
+		}
+
+		.hero {
+			padding: 90px 0 70px;
+			display: grid;
+			grid-template-columns: 1.08fr 0.92fr;
+			gap: 38px;
+			align-items: center;
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			background: rgba(13, 92, 99, 0.1);
+			color: var(--teal);
+			border: 1px solid rgba(13, 92, 99, 0.2);
+			border-radius: 999px;
+			padding: 7px 13px;
+			font-weight: 800;
+			font-size: 0.8rem;
+			margin-bottom: 16px;
+			width: fit-content;
+			animation: rise 0.8s ease both;
+		}
+
+		h1 {
+			font-family: "Bebas Neue", sans-serif;
+			font-size: clamp(2.6rem, 8vw, 5.2rem);
+			line-height: 0.96;
+			letter-spacing: 0.8px;
+			margin-bottom: 18px;
+			animation: rise 0.9s ease both;
+		}
+
+		.hero p {
+			font-size: clamp(1rem, 2.2vw, 1.2rem);
+			max-width: 60ch;
+			margin-bottom: 26px;
+			animation: rise 1s ease both;
+		}
+
+		.cta {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+			animation: rise 1.1s ease both;
+		}
+
+		.btn {
+			border: none;
+			border-radius: 999px;
+			font-weight: 800;
+			padding: 12px 20px;
+			font-size: 0.96rem;
+			cursor: pointer;
+			text-decoration: none;
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 10px 22px rgba(16, 36, 44, 0.18);
+		}
+
+		.btn-primary {
+			background: var(--teal);
+			color: #fff;
+		}
+
+		.btn-secondary {
+			background: #fff;
+			color: var(--ink);
+			border: 1px solid rgba(16, 36, 44, 0.2);
+		}
+
+		.hero-card {
+			position: relative;
+			background: var(--card);
+			border: 1px solid rgba(13, 92, 99, 0.12);
+			border-radius: var(--radius-lg);
+			box-shadow: var(--shadow);
+			padding: 22px;
+			animation: slide 0.9s ease both;
+		}
+
+		.meter {
+			height: 200px;
+			border-radius: var(--radius-md);
+			background:
+				linear-gradient(180deg, rgba(244, 162, 97, 0.2), rgba(233, 196, 106, 0.25)),
+				repeating-linear-gradient(90deg, rgba(13, 92, 99, 0.6) 0 4px, transparent 4px 16px);
+			mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+			margin-bottom: 16px;
+		}
+
+		.hero-card h3 {
+			font-size: 1.1rem;
+			margin-bottom: 6px;
+		}
+
+		.hero-card p {
+			font-size: 0.95rem;
+			margin-bottom: 14px;
+			opacity: 0.9;
+		}
+
+		.tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.tag {
+			background: rgba(42, 157, 143, 0.12);
+			border: 1px solid rgba(42, 157, 143, 0.25);
+			color: var(--teal);
+			border-radius: 999px;
+			padding: 6px 10px;
+			font-size: 0.8rem;
+			font-weight: 700;
+		}
+
+		section {
+			padding: 36px 0 26px;
+		}
+
+		.section-title {
+			font-family: "Bebas Neue", sans-serif;
+			font-size: clamp(2rem, 4.5vw, 3.1rem);
+			line-height: 1;
+			margin-bottom: 16px;
+			letter-spacing: 0.5px;
+		}
+
+		.grid-3 {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		.card {
+			background: var(--card);
+			border: 1px solid rgba(16, 36, 44, 0.1);
+			border-radius: var(--radius-md);
+			box-shadow: var(--shadow);
+			padding: 18px;
+			opacity: 0;
+			transform: translateY(14px);
+			transition: opacity 0.6s ease, transform 0.6s ease;
+		}
+
+		.card.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.card h3 {
+			margin-bottom: 8px;
+			font-size: 1.05rem;
+		}
+
+		.card p {
+			font-size: 0.95rem;
+			opacity: 0.9;
+		}
+
+		.demo-card {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		audio {
+			width: 100%;
+			accent-color: var(--teal);
+		}
+
+		.testimonials {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 16px;
+		}
+
+		blockquote {
+			font-size: 1.02rem;
+			margin-bottom: 12px;
+		}
+
+		cite {
+			font-style: normal;
+			font-weight: 700;
+			color: var(--teal);
+			font-size: 0.92rem;
+		}
+
+		.contact {
+			margin: 30px 0 50px;
+			border-radius: var(--radius-lg);
+			background: linear-gradient(135deg, var(--teal) 0%, #0e737d 50%, #14909d 100%);
+			color: #fefefe;
+			padding: 30px;
+			box-shadow: var(--shadow);
+		}
+
+		.contact h2 {
+			font-family: "Bebas Neue", sans-serif;
+			font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+			letter-spacing: 0.7px;
+			margin-bottom: 10px;
+		}
+
+		.contact p {
+			max-width: 65ch;
+			margin-bottom: 18px;
+			opacity: 0.95;
+		}
+
+		.contact-links {
+			display: flex;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		.contact .btn-primary {
+			background: #fff;
+			color: var(--teal);
+		}
+
+		.contact .btn-secondary {
+			border-color: rgba(255, 255, 255, 0.5);
+			color: #fff;
+			background: transparent;
+		}
+
+		footer {
+			padding: 0 0 30px;
+			font-size: 0.88rem;
+			color: rgba(16, 36, 44, 0.8);
+		}
+
+		@media (max-width: 900px) {
+			.hero {
+				grid-template-columns: 1fr;
+				padding-top: 54px;
+			}
+
+			.grid-3 {
+				grid-template-columns: 1fr;
+			}
+
+			.testimonials {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 620px) {
+			.links {
+				gap: 12px;
+				font-size: 0.85rem;
+			}
+
+			.nav {
+				align-items: flex-start;
+				flex-direction: column;
+				gap: 10px;
+			}
+
+			.hero {
+				padding-bottom: 44px;
+			}
+		}
+
+		@keyframes rise {
+			from {
+				opacity: 0;
+				transform: translateY(16px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes slide {
+			from {
+				opacity: 0;
+				transform: translateX(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="grain" aria-hidden="true"></div>
+
+	<header>
+		<div class="container nav">
+			<a class="logo" href="#top">TGD Voiceworks</a>
+			<ul class="links">
+				<li><a href="#services">Services</a></li>
+				<li><a href="#demos">Demos</a></li>
+				<li><a href="#clients">Clients</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<main id="top" class="container">
+		<section class="hero" aria-label="Hero">
+			<div>
+				<span class="eyebrow">Voice-Over Artist | Studio Ready</span>
+				<h1>Bring Words To Life With A Voice That Moves People</h1>
+				<p>
+					I help brands, creators, and studios deliver stories with clarity, personality, and emotional precision.
+					From warm commercial reads to energetic character spots, each performance is crafted to fit your exact tone.
+				</p>
+				<div class="cta">
+					<a class="btn btn-primary" href="#demos">Listen To Demos</a>
+					<a class="btn btn-secondary" href="#contact">Book A Session</a>
+				</div>
+			</div>
+
+			<aside class="hero-card" aria-label="At-a-glance profile">
+				<div class="meter" aria-hidden="true"></div>
+				<h3>Fast Turnarounds, Broadcast-Quality Audio</h3>
+				<p>
+					Professional home studio setup with clean delivery, directed sessions, and reliable revisions.
+				</p>
+				<div class="tags">
+					<span class="tag">Commercial</span>
+					<span class="tag">Narration</span>
+					<span class="tag">Character</span>
+					<span class="tag">E-Learning</span>
+				</div>
+			</aside>
+		</section>
+
+		<section id="services">
+			<h2 class="section-title">Voice Services</h2>
+			<div class="grid-3">
+				<article class="card">
+					<h3>Commercial Voiceover</h3>
+					<p>Confident, authentic reads for radio, TV, social media ads, and branded campaigns.</p>
+				</article>
+				<article class="card">
+					<h3>Narration</h3>
+					<p>Natural, engaging narration for documentaries, explainers, audiobooks, and corporate storytelling.</p>
+				</article>
+				<article class="card">
+					<h3>Character Performance</h3>
+					<p>Distinct character voices with dynamic range for animation, podcasts, and interactive media.</p>
+				</article>
+			</div>
+		</section>
+
+		<section id="demos">
+			<h2 class="section-title">Featured Demos</h2>
+			<div class="grid-3">
+				<article class="card demo-card">
+					<h3>Commercial Reel</h3>
+					<p>Bright, modern, and persuasive tones for product and lifestyle ads.</p>
+					<audio controls preload="none" aria-label="Commercial reel audio demo">
+						<source src="assets/commercial-demo.mp3" type="audio/mpeg">
+					</audio>
+				</article>
+				<article class="card demo-card">
+					<h3>Narration Reel</h3>
+					<p>Clear storytelling pace for educational, documentary, and branded narrative work.</p>
+					<audio controls preload="none" aria-label="Narration reel audio demo">
+						<source src="assets/narration-demo.mp3" type="audio/mpeg">
+					</audio>
+				</article>
+				<article class="card demo-card">
+					<h3>Character Reel</h3>
+					<p>Energetic, textured, and memorable characters for immersive projects.</p>
+					<audio controls preload="none" aria-label="Character reel audio demo">
+						<source src="assets/character-demo.mp3" type="audio/mpeg">
+					</audio>
+				</article>
+			</div>
+		</section>
+
+		<section id="clients">
+			<h2 class="section-title">Client Feedback</h2>
+			<div class="testimonials">
+				<article class="card">
+					<blockquote>
+						"Exactly the voice we needed. Direction was effortless, and files were delivered quickly with pristine quality."
+					</blockquote>
+					<cite>Creative Director, Northline Media</cite>
+				</article>
+				<article class="card">
+					<blockquote>
+						"TGD Voiceworks brought emotional nuance and authority to our campaign. It instantly elevated the whole production."
+					</blockquote>
+					<cite>Producer, Horizon Audio Labs</cite>
+				</article>
+			</div>
+		</section>
+
+		<section id="contact" class="contact">
+			<h2>Let Us Build Your Sound</h2>
+			<p>
+				Ready to book? Share your script, tone references, and timeline. I will send back rates and availability with a clear production plan.
+			</p>
+			<div class="contact-links">
+				<a class="btn btn-primary" href="mailto:hello@tgdvoiceworks.com">hello@tgdvoiceworks.com</a>
+				<a class="btn btn-secondary" href="tel:+10000000000">+1 (000) 000-0000</a>
+			</div>
+		</section>
+
+		<footer>
+			<p>&copy; <span id="year"></span> TGD Voiceworks. All rights reserved.</p>
+		</footer>
+	</main>
+
+	<script>
+		document.getElementById("year").textContent = new Date().getFullYear();
+
+		const cards = document.querySelectorAll(".card");
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("visible");
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.2 });
+
+		cards.forEach((card, index) => {
+			card.style.transitionDelay = `${index * 80}ms`;
+			observer.observe(card);
+		});
+	</script>
+</body>
+</html>
